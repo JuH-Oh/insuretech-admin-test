@@ -7,6 +7,7 @@ import {
   ReasonBlock,
   CaseItem,
   Button,
+  Toast,
 } from '@/components/common';
 import { typeBDetail } from '@/lib/data';
 
@@ -14,68 +15,76 @@ export default function TypeBPage() {
   const navigate = useNavigate();
   const d = typeBDetail;
   const [activeFlowIndex, setActiveFlowIndex] = useState(0);
+  const [toastMsg, setToastMsg] = useState('');
 
   return (
     <div>
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div>
-          <div className="flex items-center gap-2 mb-[6px]">
-            <Badge variant="bb">{d.badge}</Badge>
+          <div className="flex items-center gap-2 mb-1">
+            <Badge variant="bb" className="text-[11px] py-[3px] px-[10px]">{d.badge}</Badge>
+            <span className="text-[11px] text-secondary">{d.claimId}</span>
           </div>
-          <p className="text-[11px] text-secondary mb-1">{d.claimId}</p>
-          <h1 className="text-[18px] font-bold tracking-[-0.4px]">{d.title}</h1>
-          <p className="text-[11px] text-secondary mt-1">{d.meta}</p>
+          <h1 className="text-[18px] font-bold tracking-[-0.4px] mb-[3px]">{d.title}</h1>
+          <p className="text-[13px] text-secondary">{d.meta}</p>
         </div>
-        <div className="flex items-center gap-2 text-[12px] text-secondary">
+        <div className="flex items-center gap-2">
           <button
-            onClick={() => navigate(-1)}
-            className="px-2 py-1 border border-border rounded-btn cursor-pointer hover:bg-border-light transition-colors"
+            onClick={() => setToastMsg('이전 TYPE B 건 — CLM-0242')}
+            className="flex items-center gap-1 py-[5px] px-[10px] rounded-[6px] border border-border bg-card text-[12px] font-medium text-secondary cursor-pointer transition-all hover:border-primary hover:text-primary"
           >
-            ← 이전 건
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" /></svg>
+            이전 건
           </button>
-          <span className="font-semibold text-txt">
+          <span className="text-[12px] text-secondary px-1">
             {d.navCounter.current} / {d.navCounter.total}
           </span>
-          <button className="px-2 py-1 border border-border rounded-btn cursor-pointer hover:bg-border-light transition-colors">
-            다음 건 →
+          <button
+            onClick={() => setToastMsg('다음 TYPE B 건 — CLM-0240')}
+            className="flex items-center gap-1 py-[5px] px-[10px] rounded-[6px] border border-border bg-card text-[12px] font-medium text-secondary cursor-pointer transition-all hover:border-primary hover:text-primary"
+          >
+            다음 건
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" /></svg>
           </button>
         </div>
       </div>
 
       {/* Status Flow Card */}
-      <DetailCard title="면책 처리 진행 상태" className="mb-[14px]">
-        <StatusFlow
-          items={d.statusFlowItems}
-          activeIndex={activeFlowIndex}
-          onChange={setActiveFlowIndex}
-        />
-        <p className="text-[12px] text-secondary leading-[1.6] mt-2">
-          {d.statusFlowDescriptions[activeFlowIndex]}
-        </p>
-      </DetailCard>
+      <div className="bg-card rounded-card border border-border mb-[14px]">
+        <div className="p-[12px_18px]">
+          <div className="text-[11px] font-semibold text-secondary uppercase tracking-[0.4px] mb-2">면책 처리 진행 상태</div>
+          <StatusFlow
+            items={d.statusFlowItems}
+            activeIndex={activeFlowIndex}
+            onChange={setActiveFlowIndex}
+          />
+          <div className="text-[12px] text-secondary bg-border-light rounded-[6px] p-[8px_10px]">
+            {d.statusFlowDescriptions[activeFlowIndex]}
+          </div>
+        </div>
+      </div>
 
       {/* 2-column detail */}
       <div className="grid grid-cols-2 gap-[14px]">
         {/* Left */}
         <div className="flex flex-col gap-[14px]">
           {/* AI Classification */}
-          <DetailCard title="AI 분류 근거">
+          <DetailCard title="AI 분류 근거 — 신뢰도 95.8%">
             <div className="flex items-center gap-2 mb-3">
-              <Badge variant="bb">TYPE B — 면책</Badge>
-              <span className="text-[10px] font-semibold text-green bg-green-light px-2 py-[2px] rounded-badge">
-                신뢰도 {d.aiConfidence}%
-              </span>
+              <Badge variant="bb">TYPE B</Badge>
+              <span className="bg-red-light text-red text-[11px] font-semibold py-[2px] px-[9px] rounded-badge">신뢰도 95.8%</span>
             </div>
             <ReasonBlock items={d.reasons} dotColor="red" />
 
             {/* Clause */}
-            <div className="mt-3 bg-red-light rounded-block p-[10px_12px] text-[12px] text-red font-medium">
-              {d.clauseText}
+            <div className="mt-[10px] bg-red-light rounded-[6px] p-[10px_12px]">
+              <div className="text-[11px] font-bold text-red mb-1">적용 약관 (자동 매칭)</div>
+              <div className="text-[12px] text-red leading-[1.6] opacity-90">{d.clauseText}</div>
             </div>
 
             {/* Cases */}
-            <div className="mt-3">
+            <div className="mt-2">
               {d.cases.map((c, idx) => (
                 <CaseItem
                   key={idx}
@@ -88,18 +97,16 @@ export default function TypeBPage() {
           </DetailCard>
 
           {/* Legal Opinion */}
-          <DetailCard title="법률 의견서 상태">
-            <div className="bg-primary-light rounded-block p-[12px_14px] mb-3">
-              <div className="text-[13px] font-bold text-primary mb-1">
+          <DetailCard title="법률 의견서 상태" bodyClassName="px-[18px] py-3">
+            <div className="bg-primary-light border border-[#c7d2fe] rounded-block p-[10px_13px] text-[12px] leading-[1.8] mb-[10px]">
+              <div className="font-bold text-[13px] mb-[6px] text-primary">
                 {d.opinionSummary.title}
               </div>
-              <div className="text-[12px] text-secondary leading-[1.6]">
-                {d.opinionSummary.content}
-              </div>
-              <div className="text-[10px] text-secondary mt-2">{d.opinionSummary.footer}</div>
+              {d.opinionSummary.content}<br />
+              <span className="text-[11px] text-secondary">{d.opinionSummary.footer}</span>
             </div>
             <div className="flex gap-2">
-              <Button variant="secondary">PDF 다운로드</Button>
+              <Button variant="secondary" onClick={() => setToastMsg('법률 의견서 PDF 다운로드')}>PDF 다운로드</Button>
               <Button variant="secondary" onClick={() => navigate('/opinion')}>
                 의견서 관리
               </Button>
@@ -110,45 +117,43 @@ export default function TypeBPage() {
         {/* Right */}
         <div className="flex flex-col gap-[14px]">
           {/* Objection Management */}
-          <DetailCard title="이의신청 관리">
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-[12px] text-secondary">이의신청 잔여 기간</span>
-              <span className="text-[14px] font-bold text-amber">
-                {d.objectionRemainingDays}일 남음
-              </span>
+          <DetailCard title="이의신청 관리" bodyClassName="px-[18px] py-3">
+            <div className="flex justify-between items-center mb-3">
+              <span className="text-[13px] text-secondary">접수된 이의신청 없음</span>
+              <span className="text-[11px] text-secondary bg-border-light py-[3px] px-2 rounded-badge">잔여 기간 {d.objectionRemainingDays}일</span>
             </div>
-            <div className="bg-border-light rounded-block p-[20px] flex flex-col items-center justify-center text-secondary gap-2 mb-3">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"
-                  stroke="#94A3B8"
-                  strokeWidth="1.5"
-                />
-                <rect x="9" y="3" width="6" height="4" rx="1" stroke="#94A3B8" strokeWidth="1.5" />
+            <div className="bg-border-light rounded-block p-6 text-center text-secondary mb-3">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="mx-auto mb-2 opacity-40">
+                <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke="currentColor" strokeWidth="1.5" />
               </svg>
-              <span className="text-[11px]">접수된 이의신청이 없습니다</span>
+              <div className="text-[12px]">이의신청 기한 내 접수 시<br />자동으로 재검토 단계로 이동합니다</div>
             </div>
-            <div className="bg-amber-light rounded-block p-[10px_12px] text-[11px] text-amber font-medium">
-              이의신청 기한 경과 시 자동으로 최종 종결 처리됩니다
+            <div className="bg-amber-light rounded-[6px] p-[10px_12px] text-[12px] text-amber">
+              이의신청 수신 시 APT Insurance 법무팀에 자동 알림이 발송됩니다.
             </div>
           </DetailCard>
 
-          {/* Civil Complaint Response Documents */}
-          <DetailCard title="금감원 민원 대응 자료">
-            {d.civilDocuments.map((doc, idx) => (
-              <div
-                key={idx}
-                className="flex items-center justify-between bg-border-light rounded-block p-[10px_12px] mb-2 last:mb-0"
-              >
-                <span className="text-[12px] font-medium">{doc}</span>
-                <Button variant="secondary" size="sm">
-                  다운로드
-                </Button>
-              </div>
-            ))}
+          {/* Civil Documents */}
+          <DetailCard title="금감원 민원 대응 자료" bodyClassName="px-[18px] py-3">
+            <div className="text-[12px] text-secondary leading-[1.6] mb-3">
+              면책 통보 시 자동 생성된 민원 대응 자료입니다. 금감원 민원 접수 시 즉시 활용 가능합니다.
+            </div>
+            <div className="flex flex-col gap-[7px]">
+              {d.civilDocuments.map((doc, idx) => (
+                <div
+                  key={idx}
+                  className="flex justify-between items-center p-[8px_10px] bg-border-light rounded-[6px] text-[12px]"
+                >
+                  <span className="font-semibold">{doc}</span>
+                  <Button variant="secondary" size="sm" className="py-[3px] px-[9px] text-[11px]" onClick={() => setToastMsg(`${doc} 다운로드`)}>다운로드</Button>
+                </div>
+              ))}
+            </div>
           </DetailCard>
         </div>
       </div>
+
+      <Toast message={toastMsg} visible={!!toastMsg} onHide={() => setToastMsg('')} />
     </div>
   );
 }

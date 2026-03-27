@@ -22,18 +22,16 @@ export default function TypeCPage() {
       {/* Header */}
       <div className="flex items-start justify-between mb-4">
         <div>
-          <div className="flex items-center gap-2 mb-[6px]">
-            <Badge variant="bc">{d.badge}</Badge>
+          <div className="flex items-center gap-2 mb-1">
+            <Badge variant="bc" className="text-[11px] py-[3px] px-[10px]">{d.badge}</Badge>
+            <span className="text-[11px] text-secondary">{d.claimId}</span>
           </div>
-          <p className="text-[11px] text-secondary mb-1">{d.claimId}</p>
-          <h1 className="text-[18px] font-bold tracking-[-0.4px]">{d.title}</h1>
-          <p className="text-[11px] text-secondary mt-1">{d.meta}</p>
+          <h1 className="text-[18px] font-bold tracking-[-0.4px] mb-[3px]">{d.title}</h1>
+          <p className="text-[13px] text-secondary">{d.meta}</p>
         </div>
-        <div>
-          <span className="text-[12px] font-semibold text-green bg-green-light px-3 py-[4px] rounded-badge">
-            신뢰도 {d.confidence}%
-          </span>
-        </div>
+        <span className="bg-green-light text-green text-[11px] font-semibold py-1 px-3 rounded-[5px]">
+          신뢰도 {d.confidence}%
+        </span>
       </div>
 
       {/* 2-column detail */}
@@ -41,7 +39,7 @@ export default function TypeCPage() {
         {/* Left */}
         <div className="flex flex-col gap-[14px]">
           {/* Photos */}
-          <DetailCard title="첨부 사진 — 세그멘테이션">
+          <DetailCard title="첨부 사진 — 세그멘테이션 결과" bodyClassName="p-3">
             <div className="grid grid-cols-2 gap-2">
               {d.photos.map((photo, idx) => (
                 <PhotoPlaceholder
@@ -65,26 +63,21 @@ export default function TypeCPage() {
         {/* Right */}
         <div className="flex flex-col gap-[14px]">
           {/* Estimation Result */}
-          <DetailCard title="AI 적산 결과 요약">
+          <DetailCard title="AI 적산 결과 요약 — 산출 6분 41초">
             {/* Big amount */}
-            <div className="text-center py-4">
-              <div className="text-[36px] font-bold tracking-[-1px]">
+            <div className="text-center py-[14px_0_10px]" style={{ padding: '14px 0 10px' }}>
+              <div className="text-[36px] font-bold text-txt tracking-[-1px]">
                 {est.totalAmount.toLocaleString()}원
               </div>
               <div className="text-[12px] text-secondary mt-1">
-                AI 적산 · 산출 시간 {est.calculationTime}
+                AI 산출 적정 보험금 (표준노임단가 기준)
               </div>
             </div>
 
             {/* Savings banner */}
-            <div className="bg-amber-light rounded-block p-[10px_14px] text-center mb-4">
-              <span className="text-[13px] font-bold text-amber">
-                업체 견적 대비 -{est.savingsPercent}% 절감
-              </span>
-              <span className="text-[11px] text-secondary ml-2">
-                ({est.vendorEstimate.toLocaleString()}원 → {est.totalAmount.toLocaleString()}원, 절감{' '}
-                {est.savingsAmount.toLocaleString()}원)
-              </span>
+            <div className="bg-amber-light rounded-[6px] p-[9px_12px] text-[12px] text-amber flex justify-between mb-[14px] border border-amber-border">
+              <span>업체 견적 {est.vendorEstimate.toLocaleString()}원 대비</span>
+              <strong>-{est.savingsPercent}% ({est.savingsAmount.toLocaleString()}원 절감)</strong>
             </div>
 
             {/* Breakdown */}
@@ -99,15 +92,13 @@ export default function TypeCPage() {
             ))}
 
             {/* Final total */}
-            <div className="flex justify-between items-center py-3 mt-2 border-t-2 border-border">
-              <span className="text-[13px] font-bold">최종 보험 지급액</span>
-              <span className="text-[16px] font-bold text-green">
-                {est.finalAmount.toLocaleString()}원
-              </span>
+            <div className="flex justify-between items-center pt-3 mt-1 border-t border-border" style={{ fontSize: '15px', fontWeight: 700 }}>
+              <span>지급 보험금</span>
+              <span className="text-green">{est.finalAmount.toLocaleString()}원</span>
             </div>
 
             {/* Actions */}
-            <div className="flex gap-2 mt-4">
+            <div className="flex gap-2 mt-[14px]">
               <Button
                 variant="green"
                 onClick={() => {
@@ -115,10 +106,10 @@ export default function TypeCPage() {
                   navigate('/approve');
                 }}
               >
-                승인 및 지급
+                승인 및 지급 처리
               </Button>
               <Button variant="secondary" onClick={() => navigate('/estimation')}>
-                수량 내역서
+                수량 내역서 상세
               </Button>
             </div>
           </DetailCard>

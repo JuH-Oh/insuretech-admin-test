@@ -21,7 +21,7 @@ export default function ApprovePage() {
   const radioOptions = [
     'AI 산출액 그대로 승인 (607,850원)',
     '금액 수정 후 승인',
-    '재분류 요청',
+    '재분류 요청 (AI 재심사)',
   ];
 
   const handleApprove = () => {
@@ -33,11 +33,9 @@ export default function ApprovePage() {
   return (
     <div>
       {/* Header */}
-      <div className="mb-4">
-        <h1 className="text-[18px] font-bold tracking-[-0.4px]">손해사정사 최종 승인</h1>
-        <p className="text-[12px] text-secondary mt-1">
-          CLM-2026-0247 · 헬리오시티 102동 1204호 천장 급배수 누수
-        </p>
+      <div className="mb-[18px]">
+        <div className="text-[18px] font-bold tracking-[-0.4px] mb-[3px]">손해사정사 최종 검토</div>
+        <div className="text-[13px] text-secondary">CLM-2026-0247 / 헬리오시티 102동 1204호</div>
       </div>
 
       {/* 2-column */}
@@ -45,14 +43,12 @@ export default function ApprovePage() {
         {/* Left */}
         <div className="flex flex-col gap-[14px]">
           {/* AI Result */}
-          <DetailCard title="AI 산출 결과 최종 확인">
-            <div className="text-center py-5">
-              <div className="text-[38px] font-bold tracking-[-1px]">
-                {est.totalAmount.toLocaleString()}원
-              </div>
-              <div className="text-[12px] text-secondary mt-1">
-                AI 적산 결과 · 업체 견적 대비 -{est.savingsPercent}% 절감
-              </div>
+          <DetailCard title="AI 산출 결과 최종 확인" bodyClassName="text-center py-5 px-[18px]">
+            <div className="text-[38px] font-bold text-txt tracking-[-1px]">
+              {est.totalAmount.toLocaleString()}원
+            </div>
+            <div className="text-[12px] text-secondary mt-1">
+              업체 견적 대비 -{est.savingsPercent}% / 산출 {est.calculationTime}
             </div>
           </DetailCard>
 
@@ -67,14 +63,12 @@ export default function ApprovePage() {
               />
             ))}
             <div className="mt-3">
-              <label className="text-[11px] font-semibold text-secondary uppercase tracking-[0.4px] block mb-2">
-                검토 의견 (선택)
-              </label>
+              <div className="text-[12px] font-semibold text-secondary mb-[6px]">검토 의견 (선택)</div>
               <textarea
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
-                placeholder="검토 의견을 입력하세요..."
-                className="w-full h-[80px] text-[13px] p-3 border border-border rounded-input resize-none outline-none focus:border-primary transition-colors"
+                placeholder="AI 산출 결과에 대한 검토 의견을 입력하세요..."
+                className="w-full border border-border rounded-btn py-[9px] px-[11px] text-[13px] font-sans resize-y min-h-[72px] text-txt outline-none bg-card transition-colors focus:border-primary"
               />
             </div>
           </DetailCard>
@@ -83,34 +77,21 @@ export default function ApprovePage() {
         {/* Right */}
         <div className="flex flex-col gap-[14px]">
           {/* Legal Opinion */}
-          <DetailCard title="법률 의견서 첨부">
-            <div className="bg-primary-light rounded-block p-[12px_14px]">
-              <div className="flex items-center gap-2 mb-1">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"
-                    stroke="#4F46E5"
-                    strokeWidth="1.5"
-                  />
-                  <path
-                    d="M14 2v6h6"
-                    stroke="#4F46E5"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
-                </svg>
-                <span className="text-[12px] font-semibold text-primary">
-                  손해사정 의견서.pdf
-                </span>
-              </div>
-              <div className="text-[11px] text-secondary">
-                2026-03-14 생성 · APT Insurance 법무팀 검토 완료
+          <DetailCard title="법률 의견서 첨부" bodyClassName="px-[18px] py-3">
+            <div className="bg-primary-light border border-[#c7d2fe] rounded-btn p-[11px_13px] flex gap-[10px] items-start">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="shrink-0 mt-[1px]">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="#4F46E5" strokeWidth="1.6" />
+                <path d="M14 2v6h6M16 13H8M16 17H8" stroke="#4F46E5" strokeWidth="1.6" strokeLinecap="round" />
+              </svg>
+              <div>
+                <div className="font-semibold text-[13px] text-primary">보험업법 제185조 기반 손해사정 의견서</div>
+                <div className="text-[11px] text-secondary mt-[2px]">APT Insurance 법무팀 첨부 완료 — 2026-03-14 09:45</div>
               </div>
             </div>
           </DetailCard>
 
           {/* Timeline */}
-          <DetailCard title="처리 이력">
+          <DetailCard title="처리 이력" bodyClassName="px-[18px] py-3">
             <Timeline items={approveTimeline} />
           </DetailCard>
 
@@ -119,11 +100,15 @@ export default function ApprovePage() {
             <Button
               variant="green"
               fullWidth
+              className="py-[11px] text-[13px] justify-center"
               onClick={() => setModalOpen(true)}
             >
-              최종 승인
+              최종 승인 및 지급 처리
             </Button>
-            <Button variant="danger" onClick={() => navigate('/claims')}>
+            <Button
+              variant="danger"
+              onClick={() => setModalOpen(true)}
+            >
               반려
             </Button>
           </div>
@@ -133,9 +118,9 @@ export default function ApprovePage() {
       {/* Modal */}
       <Modal
         open={modalOpen}
-        title="최종 승인 확인"
-        description={`CLM-2026-0247 헬리오시티 건에 대해\n보험 지급액 ${est.totalAmount.toLocaleString()}원을\n최종 승인하시겠습니까?`}
-        confirmLabel="승인"
+        title="지급 확정 완료"
+        description={`607,850원 지급이 확정되었습니다. 청구인에게 SMS 알림이 발송되며 영업일 3일 이내 입금됩니다.\n\n총 처리 시간: 22분`}
+        confirmLabel="확인"
         cancelLabel="취소"
         onConfirm={handleApprove}
         onCancel={() => setModalOpen(false)}

@@ -10,7 +10,7 @@ import {
 } from '@/components/common';
 import type { Column } from '@/components/common';
 import type { Claim } from '@/lib/types';
-import { kpiData, dashboardRecentClaims, barChartData, lossRateSummary } from '@/lib/data';
+import { kpiData, dashboardRecentClaims, barChartData } from '@/lib/data';
 
 const typeToRoute: Record<string, string> = {
   A: '/type-a',
@@ -36,13 +36,20 @@ export default function DashboardPage() {
   const navigate = useNavigate();
 
   const columns: Column<Claim>[] = [
-    { key: 'id', label: '청구번호', width: '100px' },
+    {
+      key: 'id',
+      label: '청구번호',
+      width: '100px',
+      render: (row) => (
+        <span className="text-[11px] text-secondary">{row.id}</span>
+      ),
+    },
     {
       key: 'complex',
-      label: '단지 · 내용',
+      label: '단지·내용',
       render: (row) => (
         <div>
-          <div className="font-semibold text-[13px]">{row.complex}</div>
+          <div className="font-semibold">{row.complex}</div>
           <div className="text-[11px] text-secondary">{row.description}</div>
         </div>
       ),
@@ -50,8 +57,10 @@ export default function DashboardPage() {
     {
       key: 'date',
       label: '접수일',
-      width: '90px',
-      render: (row) => row.date.slice(5),
+      width: '80px',
+      render: (row) => (
+        <span className="text-[12px] text-secondary">{row.date.slice(5).replace('-', '/')}</span>
+      ),
     },
     {
       key: 'type',
@@ -65,9 +74,11 @@ export default function DashboardPage() {
       key: 'confidence',
       label: '신뢰도',
       width: '80px',
-      render: (row) => (
-        <span className="font-semibold">{(row.confidence * 100).toFixed(1)}%</span>
-      ),
+      render: (row) => {
+        const pct = (row.confidence * 100).toFixed(1);
+        const color = row.confidence >= 0.9 ? 'text-green' : 'text-amber';
+        return <span className={`font-semibold ${color}`}>{pct}%</span>;
+      },
     },
     {
       key: 'status',
@@ -84,13 +95,11 @@ export default function DashboardPage() {
   return (
     <div>
       {/* Page Title */}
-      <div className="mb-4">
-        <h1 className="text-[18px] font-bold tracking-[-0.4px]">대시보드</h1>
-        <p className="text-[12px] text-secondary mt-1">2026년 3월 — APT Insurance AI 청구 관리 현황</p>
-      </div>
+      <div className="page-title text-[18px] font-bold tracking-[-0.4px] mb-[3px]">청구 관리 대시보드</div>
+      <div className="page-sub text-[13px] text-secondary mb-[18px]">2026년 3월 · 전체 단지 기준</div>
 
       {/* KPI Grid */}
-      <div className="grid grid-cols-4 gap-3 mb-[14px]">
+      <div className="grid grid-cols-4 gap-3 mb-[18px]">
         {kpiData.map((kpi) => (
           <KPICard
             key={kpi.variant}
@@ -119,22 +128,19 @@ export default function DashboardPage() {
         <div className="flex flex-col gap-[14px]">
           <DetailCard title="TYPE별 손해율 절감">
             <BarChart items={barChartData} />
-            <div className="mt-4 pt-3 border-t border-border">
-              <div className="flex justify-between items-center py-[6px]">
-                <span className="text-[12px] text-secondary">
-                  {lossRateSummary.directBlock.label}
-                </span>
-                <span className="text-[15px] font-bold text-red">
-                  {lossRateSummary.directBlock.value}
-                </span>
-              </div>
-              <div className="flex justify-between items-center py-[6px]">
-                <span className="text-[12px] text-secondary">
-                  {lossRateSummary.overEstimate.label}
-                </span>
-                <span className="text-[15px] font-bold text-green">
-                  {lossRateSummary.overEstimate.value}
-                </span>
+            {/* Savings Summary Box */}
+            <div className="bg-border-light rounded-block p-[10px_12px] mt-[10px]">
+              <div className="text-[11px] text-secondary mb-[7px]">이번 달 손해율 절감</div>
+              <div className="flex gap-3">
+                <div>
+                  <div className="text-[18px] font-bold text-amber">-16.8%</div>
+                  <div className="text-[10px] text-secondary">A+B 직접 차단</div>
+                </div>
+                <div className="w-px bg-border" />
+                <div>
+                  <div className="text-[18px] font-bold text-green">-11.2%</div>
+                  <div className="text-[10px] text-secondary">C 과다견적 방어</div>
+                </div>
               </div>
             </div>
           </DetailCard>
