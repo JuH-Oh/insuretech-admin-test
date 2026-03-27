@@ -16,7 +16,7 @@ interface StageTrackerProps {
 
 export default function StageTracker({ title, stages }: StageTrackerProps) {
   return (
-    <div className="bg-card rounded-card border border-border p-[16px_20px] mb-[14px]">
+    <div className="bg-card rounded-card border border-border py-[16px] px-[20px] mb-[14px]">
       <div className="text-[11px] font-bold text-secondary uppercase tracking-[0.5px] mb-[14px]">
         {title}
       </div>

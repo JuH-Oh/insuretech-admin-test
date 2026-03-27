@@ -78,7 +78,7 @@ export default function ApprovePage() {
         <div className="flex flex-col gap-[14px]">
           {/* Legal Opinion */}
           <DetailCard title="법률 의견서 첨부" bodyClassName="px-[18px] py-3">
-            <div className="bg-primary-light border border-[#c7d2fe] rounded-btn p-[11px_13px] flex gap-[10px] items-start">
+            <div className="bg-primary-light border border-[#c7d2fe] rounded-btn py-[11px] px-[13px] flex gap-[10px] items-start">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="shrink-0 mt-[1px]">
                 <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="#4F46E5" strokeWidth="1.6" />
                 <path d="M14 2v6h6M16 13H8M16 17H8" stroke="#4F46E5" strokeWidth="1.6" strokeLinecap="round" />

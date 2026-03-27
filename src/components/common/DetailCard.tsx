@@ -18,7 +18,7 @@ export default function DetailCard({
       <div className="px-[18px] pt-[14px] pb-3 text-[11px] font-bold text-secondary uppercase tracking-[0.5px] border-b border-border">
         {title}
       </div>
-      <div className={clsx('p-[16px_18px]', bodyClassName)}>{children}</div>
+      <div className={clsx('py-[16px] px-[18px]', bodyClassName)}>{children}</div>
     </div>
   );
 }

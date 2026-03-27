@@ -95,8 +95,8 @@ export default function DashboardPage() {
   return (
     <div>
       {/* Page Title */}
-      <div className="page-title text-[18px] font-bold tracking-[-0.4px] mb-[3px]">청구 관리 대시보드</div>
-      <div className="page-sub text-[13px] text-secondary mb-[18px]">2026년 3월 · 전체 단지 기준</div>
+      <div className="text-[18px] font-bold tracking-[-0.4px] mb-[3px]">청구 관리 대시보드</div>
+      <div className="text-[13px] text-secondary mb-[18px]">2026년 3월 · 전체 단지 기준</div>
 
       {/* KPI Grid */}
       <div className="grid grid-cols-4 gap-3 mb-[18px]">
@@ -129,7 +129,7 @@ export default function DashboardPage() {
           <DetailCard title="TYPE별 손해율 절감">
             <BarChart items={barChartData} />
             {/* Savings Summary Box */}
-            <div className="bg-border-light rounded-block p-[10px_12px] mt-[10px]">
+            <div className="bg-border-light rounded-block py-[10px] px-[12px] mt-[10px]">
               <div className="text-[11px] text-secondary mb-[7px]">이번 달 손해율 절감</div>
               <div className="flex gap-3">
                 <div>

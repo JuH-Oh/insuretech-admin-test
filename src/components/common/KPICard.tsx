@@ -34,7 +34,7 @@ export default function KPICard({
   return (
     <div
       onClick={onClick}
-      className="bg-card rounded-card p-[16px_18px] border border-border cursor-pointer transition-all hover:border-primary hover:shadow-ring-primary"
+      className="bg-card rounded-card py-[16px] px-[18px] border border-border cursor-pointer transition-all hover:border-primary hover:shadow-ring-primary"
     >
       <div className="text-[11px] font-semibold text-secondary uppercase tracking-[0.4px] mb-2">
         {label}
