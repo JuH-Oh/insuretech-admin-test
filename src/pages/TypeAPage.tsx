@@ -56,7 +56,7 @@ export default function TypeAPage() {
       </div>
 
       {/* Warning Banner */}
-      <div className="bg-amber-light border border-amber-border rounded-card p-[14px_18px] mb-[14px] flex gap-[14px] items-start">
+      <div className="bg-amber-light border border-amber-border rounded-card py-[14px] px-[18px] mb-[14px] flex gap-[14px] items-start">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="shrink-0 mt-[1px]">
           <circle cx="12" cy="12" r="9" stroke="#D97706" strokeWidth="1.8" />
           <path d="M12 8v4M12 16h.01" stroke="#D97706" strokeWidth="1.8" strokeLinecap="round" />

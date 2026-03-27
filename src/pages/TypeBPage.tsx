@@ -52,14 +52,14 @@ export default function TypeBPage() {
 
       {/* Status Flow Card */}
       <div className="bg-card rounded-card border border-border mb-[14px]">
-        <div className="p-[12px_18px]">
+        <div className="py-[12px] px-[18px]">
           <div className="text-[11px] font-semibold text-secondary uppercase tracking-[0.4px] mb-2">면책 처리 진행 상태</div>
           <StatusFlow
             items={d.statusFlowItems}
             activeIndex={activeFlowIndex}
             onChange={setActiveFlowIndex}
           />
-          <div className="text-[12px] text-secondary bg-border-light rounded-[6px] p-[8px_10px]">
+          <div className="text-[12px] text-secondary bg-border-light rounded-[6px] py-[8px] px-[10px]">
             {d.statusFlowDescriptions[activeFlowIndex]}
           </div>
         </div>
@@ -78,7 +78,7 @@ export default function TypeBPage() {
             <ReasonBlock items={d.reasons} dotColor="red" />
 
             {/* Clause */}
-            <div className="mt-[10px] bg-red-light rounded-[6px] p-[10px_12px]">
+            <div className="mt-[10px] bg-red-light rounded-[6px] py-[10px] px-[12px]">
               <div className="text-[11px] font-bold text-red mb-1">적용 약관 (자동 매칭)</div>
               <div className="text-[12px] text-red leading-[1.6] opacity-90">{d.clauseText}</div>
             </div>
@@ -98,7 +98,7 @@ export default function TypeBPage() {
 
           {/* Legal Opinion */}
           <DetailCard title="법률 의견서 상태" bodyClassName="px-[18px] py-3">
-            <div className="bg-primary-light border border-[#c7d2fe] rounded-block p-[10px_13px] text-[12px] leading-[1.8] mb-[10px]">
+            <div className="bg-primary-light border border-[#c7d2fe] rounded-block py-[10px] px-[13px] text-[12px] leading-[1.8] mb-[10px]">
               <div className="font-bold text-[13px] mb-[6px] text-primary">
                 {d.opinionSummary.title}
               </div>
@@ -128,7 +128,7 @@ export default function TypeBPage() {
               </svg>
               <div className="text-[12px]">이의신청 기한 내 접수 시<br />자동으로 재검토 단계로 이동합니다</div>
             </div>
-            <div className="bg-amber-light rounded-[6px] p-[10px_12px] text-[12px] text-amber">
+            <div className="bg-amber-light rounded-[6px] py-[10px] px-[12px] text-[12px] text-amber">
               이의신청 수신 시 APT Insurance 법무팀에 자동 알림이 발송됩니다.
             </div>
           </DetailCard>
@@ -142,7 +142,7 @@ export default function TypeBPage() {
               {d.civilDocuments.map((doc, idx) => (
                 <div
                   key={idx}
-                  className="flex justify-between items-center p-[8px_10px] bg-border-light rounded-[6px] text-[12px]"
+                  className="flex justify-between items-center py-[8px] px-[10px] bg-border-light rounded-[6px] text-[12px]"
                 >
                   <span className="font-semibold">{doc}</span>
                   <Button variant="secondary" size="sm" className="py-[3px] px-[9px] text-[11px]" onClick={() => setToastMsg(`${doc} 다운로드`)}>다운로드</Button>

@@ -65,7 +65,7 @@ export default function TypeCPage() {
           {/* Estimation Result */}
           <DetailCard title="AI 적산 결과 요약 — 산출 6분 41초">
             {/* Big amount */}
-            <div className="text-center py-[14px_0_10px]" style={{ padding: '14px 0 10px' }}>
+            <div className="text-center pt-[14px] pb-[10px]">
               <div className="text-[36px] font-bold text-txt tracking-[-1px]">
                 {est.totalAmount.toLocaleString()}원
               </div>
@@ -75,7 +75,7 @@ export default function TypeCPage() {
             </div>
 
             {/* Savings banner */}
-            <div className="bg-amber-light rounded-[6px] p-[9px_12px] text-[12px] text-amber flex justify-between mb-[14px] border border-amber-border">
+            <div className="bg-amber-light rounded-[6px] py-[9px] px-[12px] text-[12px] text-amber flex justify-between mb-[14px] border border-amber-border">
               <span>업체 견적 {est.vendorEstimate.toLocaleString()}원 대비</span>
               <strong>-{est.savingsPercent}% ({est.savingsAmount.toLocaleString()}원 절감)</strong>
             </div>

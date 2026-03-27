@@ -27,7 +27,7 @@ export default function Modal({
       onClick={onCancel}
     >
       <div
-        className="bg-card rounded-modal p-[28px_28px_24px] max-w-[380px] w-[90%] border border-border"
+        className="bg-card rounded-modal pt-[28px] px-[28px] pb-[24px] max-w-[380px] w-[90%] border border-border"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="text-[16px] font-bold tracking-[-0.3px] mb-[6px]">{title}</div>

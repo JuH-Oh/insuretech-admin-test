@@ -264,7 +264,7 @@ export default function ClaimsPage() {
           {preview ? (
             <>
               {/* Preview Header */}
-              <div className="p-[14px_16px] border-b border-border flex justify-between items-start">
+              <div className="py-[14px] px-[16px] border-b border-border flex justify-between items-start">
                 <div>
                   <div className="mb-[5px]">
                     <Badge variant={preview.badgeVariant}>{preview.badge}</Badge>
@@ -282,7 +282,7 @@ export default function ClaimsPage() {
                 </button>
               </div>
               {/* Preview Body */}
-              <div className="p-[12px_16px] flex-1 overflow-y-auto">
+              <div className="py-[12px] px-[16px] flex-1 overflow-y-auto">
                 {preview.kvRows.map((kv, idx) => (
                   <KVRow
                     key={idx}
@@ -294,7 +294,7 @@ export default function ClaimsPage() {
                 ))}
               </div>
               {/* Preview Actions */}
-              <div className="p-[12px_16px] border-t border-border flex gap-[7px]">
+              <div className="py-[12px] px-[16px] border-t border-border flex gap-[7px]">
                 {preview.actions.map((action, idx) => (
                   <Button
                     key={idx}
@@ -308,7 +308,7 @@ export default function ClaimsPage() {
               </div>
             </>
           ) : (
-            <div className="flex-1 flex flex-col items-center justify-center p-[32px_20px] text-center text-secondary">
+            <div className="flex-1 flex flex-col items-center justify-center py-[32px] px-[20px] text-center text-secondary">
               <svg width="36" height="36" viewBox="0 0 24 24" fill="none" className="opacity-25 mb-3">
                 <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke="#64748B" strokeWidth="1.5" />
               </svg>

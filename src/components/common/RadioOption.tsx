@@ -11,7 +11,7 @@ export default function RadioOption({ label, selected, onChange }: RadioOptionPr
     <div
       onClick={onChange}
       className={clsx(
-        'flex items-center gap-[10px] p-[11px_13px] border-[1.5px] rounded-block cursor-pointer mb-[7px] text-[13px] font-medium transition-all',
+        'flex items-center gap-[10px] py-[11px] px-[13px] border-[1.5px] rounded-block cursor-pointer mb-[7px] text-[13px] font-medium transition-all',
         selected
           ? 'border-primary bg-primary-light'
           : 'border-border hover:border-primary',

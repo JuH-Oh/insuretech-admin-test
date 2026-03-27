@@ -71,7 +71,7 @@ export default function Sidebar() {
   return (
     <aside className="w-sidebar bg-card border-r border-border flex flex-col shrink-0 overflow-y-auto">
       {/* Logo */}
-      <div className="p-[20px_20px_16px] border-b border-border">
+      <div className="pt-[20px] px-[20px] pb-[16px] border-b border-border">
         <div className="inline-block bg-primary-light text-primary text-[10px] font-bold px-2 py-[2px] rounded-badge tracking-[0.3px] mb-[6px]">
           AI 청구 관리
         </div>
@@ -101,7 +101,7 @@ export default function Sidebar() {
       </div>
 
       {/* Footer */}
-      <div className="mt-auto p-[14px_16px] border-t border-border text-[11px] text-secondary leading-[1.6]">
+      <div className="mt-auto py-[14px] px-[16px] border-t border-border text-[11px] text-secondary leading-[1.6]">
         APT Insurance
       </div>
     </aside>
