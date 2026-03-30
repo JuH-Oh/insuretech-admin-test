@@ -1,19 +1,22 @@
 import 'reflect-metadata';
-import { DataSource } from 'typeorm';
+import { DataSource, DataSourceOptions } from 'typeorm';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import * as dotenv from 'dotenv';
 
-dotenv.config();
+dotenv.config({ path: `.env.${process.env.NODE_ENV || 'local'}` });
 
-export const AppDataSource = new DataSource({
+const options: DataSourceOptions = {
   type: 'postgres',
-  host: process.env.DB_HOST ?? 'localhost',
-  port: parseInt(process.env.DB_PORT ?? '5432', 10),
-  username: process.env.DB_USERNAME ?? 'user',
-  password: process.env.DB_PASSWORD ?? 'password',
-  database: process.env.DB_DATABASE ?? 'insuretech',
+  host: process.env.DATABASE_HOST ?? 'localhost',
+  port: parseInt(process.env.DATABASE_PORT ?? '5432', 10),
+  username: process.env.DATABASE_USERNAME,
+  password: process.env.DATABASE_PASSWORD,
+  database: process.env.DATABASE_NAME,
   synchronize: false,
-  logging: process.env.NODE_ENV === 'development',
-  entities: [__dirname + '/entities/*.entity.{ts,js}'],
-  migrations: [__dirname + '/migrations/*.{ts,js}'],
-  subscribers: [],
-});
+  logging: process.env.NODE_ENV === 'local',
+  entities: ['dist/**/*.entity.js'],
+  migrations: ['dist/migrations/*.js'],
+  namingStrategy: new SnakeNamingStrategy(),
+};
+
+export default new DataSource(options);
