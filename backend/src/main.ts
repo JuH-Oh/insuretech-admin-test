@@ -44,6 +44,7 @@ async function bootstrap() {
     .addBearerAuth()
     .addTag('Auth', 'Authentication and authorization')
     .addTag('Users', 'User management')
+    .addTag('Dashboard', 'Dashboard KPI metrics')
     .addTag('Complexes', 'Complex management')
     .addTag('Policies', 'Policy management')
     .addTag('Claims', 'Claim management')

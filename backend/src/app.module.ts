@@ -13,6 +13,7 @@ import { ClaimsModule } from './claims/claims.module';
 import { DocumentsModule } from './documents/documents.module';
 import { ApprovalsModule } from './approvals/approvals.module';
 import { EstimationsModule } from './estimations/estimations.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { EstimationsModule } from './estimations/estimations.module';
     DocumentsModule,
     ApprovalsModule,
     EstimationsModule,
+    DashboardModule,
   ],
   controllers: [AppController],
   providers: [
