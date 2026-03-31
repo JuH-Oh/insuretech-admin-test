@@ -15,9 +15,9 @@ export default function App() {
       <Route element={<Layout />}>
         <Route path="/" element={<DashboardPage />} />
         <Route path="/claims" element={<ClaimsPage />} />
-        <Route path="/type-a" element={<TypeAPage />} />
-        <Route path="/type-b" element={<TypeBPage />} />
-        <Route path="/type-c" element={<TypeCPage />} />
+        <Route path="/type-a/:id" element={<TypeAPage />} />
+        <Route path="/type-b/:id" element={<TypeBPage />} />
+        <Route path="/type-c/:id" element={<TypeCPage />} />
         <Route path="/estimation" element={<EstimationPage />} />
         <Route path="/approve" element={<ApprovePage />} />
         <Route path="/opinion" element={<OpinionPage />} />

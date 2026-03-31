@@ -74,7 +74,7 @@ export const claims: Claim[] = [
     amount: 607850,
     actionLabel: '상세',
     actionVariant: 'primary',
-    actionRoute: '/type-c',
+    actionRoute: '/type-c/CLM-0247',
   },
   {
     id: 'CLM-0246',
@@ -87,7 +87,7 @@ export const claims: Claim[] = [
     statusLabel: '소송 이관',
     actionLabel: '증거 패키지',
     actionVariant: 'secondary',
-    actionRoute: '/type-a',
+    actionRoute: '/type-a/CLM-0246',
   },
   {
     id: 'CLM-0245',
@@ -100,7 +100,7 @@ export const claims: Claim[] = [
     statusLabel: '의견서 발송',
     actionLabel: '이의신청 확인',
     actionVariant: 'secondary',
-    actionRoute: '/type-b',
+    actionRoute: '/type-b/CLM-0245',
   },
   {
     id: 'CLM-0243',
@@ -113,7 +113,7 @@ export const claims: Claim[] = [
     statusLabel: '소송 이관',
     actionLabel: '증거 패키지',
     actionVariant: 'secondary',
-    actionRoute: '/type-a',
+    actionRoute: '/type-a/CLM-0243',
   },
   {
     id: 'CLM-0242',

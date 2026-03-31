@@ -14,7 +14,7 @@ import type { ClaimListItem } from '@/lib/api';
 
 type TabKey = 'all' | 'a' | 'b' | 'c' | 'wait' | 'done';
 
-const typeToRoute: Record<string, string> = {
+const typeToRoutePrefix: Record<string, string> = {
   A: '/type-a',
   B: '/type-b',
   C: '/type-c',
@@ -54,7 +54,7 @@ function mapApiClaim(item: ClaimListItem): Claim {
     amount: item.amount,
     actionLabel: '상세',
     actionVariant: 'primary',
-    actionRoute: typeToRoute[item.type] ?? '/claims',
+    actionRoute: `${typeToRoutePrefix[item.type] ?? '/claims'}/${item.id}`,
   };
 }
 
