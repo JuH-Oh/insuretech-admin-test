@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import type { TimelineItemData } from '@/lib/types';
+import type { TimelineItemData } from '@/types/ui';
 
 function CheckIcon() {
   return (

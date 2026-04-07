@@ -1,14 +1,16 @@
 import { Routes, Route } from 'react-router-dom';
 import Layout from '@/components/layout/Layout';
-import DashboardPage from '@/pages/DashboardPage';
-import ClaimsPage from '@/pages/ClaimsPage';
-import TypeAPage from '@/pages/TypeAPage';
-import TypeBPage from '@/pages/TypeBPage';
-import TypeCPage from '@/pages/TypeCPage';
-import FieldCheckPage from '@/pages/FieldCheckPage';
-import EstimationPage from '@/pages/EstimationPage';
-import ApprovePage from '@/pages/ApprovePage';
-import OpinionPage from '@/pages/OpinionPage';
+import DashboardPage from '@/pages/dashboard';
+import ClaimsPage from '@/pages/claims';
+import TypeAPage from '@/pages/type-a';
+import TypeBPage from '@/pages/type-b';
+import TypeCPage from '@/pages/type-c';
+import FieldCheckPage from '@/pages/field';
+import EstimationPage from '@/pages/estimation';
+import ApprovePage from '@/pages/approve';
+import OpinionPage from '@/pages/opinion';
+import AppealsPage from '@/pages/appeals';
+import IndemnityPage from '@/pages/indemnity';
 
 export default function App() {
   return (
@@ -23,6 +25,8 @@ export default function App() {
         <Route path="/estimation" element={<EstimationPage />} />
         <Route path="/approve" element={<ApprovePage />} />
         <Route path="/opinion" element={<OpinionPage />} />
+        <Route path="/appeals" element={<AppealsPage />} />
+        <Route path="/indemnity" element={<IndemnityPage />} />
       </Route>
     </Routes>
   );

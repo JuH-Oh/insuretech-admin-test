@@ -1,4 +1,4 @@
-import type { BarItem } from '@/lib/types';
+import type { BarItem } from '@/types/ui';
 
 const colorMap = {
   amber: 'bg-amber',

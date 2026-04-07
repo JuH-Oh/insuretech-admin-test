@@ -32,3 +32,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 frontend/
+
+# claude
+.claude
+
+# cursor
+.cursor

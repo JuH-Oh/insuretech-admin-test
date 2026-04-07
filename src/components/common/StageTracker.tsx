@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import type { StageData } from '@/lib/types';
+import type { StageData } from '@/types/ui';
 
 function CheckIcon() {
   return (

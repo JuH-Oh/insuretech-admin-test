@@ -88,6 +88,18 @@ const OpinionIcon = () => (
     <path d="M14 2v6h6M16 13H8M16 17H8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
   </svg>
 );
+const AppealsIcon = () => (
+  <svg className="w-[15px] h-[15px] shrink-0" viewBox="0 0 24 24" fill="none">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M9 12l2 2 4-4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+  </svg>
+);
+const IndemnityIcon = () => (
+  <svg className="w-[15px] h-[15px] shrink-0" viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" />
+    <path d="M12 7v5l3 3" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+  </svg>
+);
 const TypeAIcon = () => <div className="w-[15px] flex justify-center"><div className="w-[5px] h-[5px] rounded-full" style={{ backgroundColor: '#C9252C' }} /></div>;
 const TypeBIcon = () => <div className="w-[15px] flex justify-center"><div className="w-[5px] h-[5px] rounded-full" style={{ backgroundColor: '#64748B' }} /></div>;
 const TypeCIcon = () => <div className="w-[15px] flex justify-center"><div className="w-[5px] h-[5px] rounded-full" style={{ backgroundColor: '#00854A' }} /></div>;
@@ -181,6 +193,15 @@ function SidebarContent({
         <NavItem to="/estimation" label="적산·산정" icon={<EstimationIcon />} collapsed={collapsed} onClick={onClose} />
         <NavItem to="/approve" label="승인·결재" icon={<ApproveIcon />} collapsed={collapsed} onClick={onClose} />
         <NavItem to="/opinion" label="의견서" icon={<OpinionIcon />} collapsed={collapsed} onClick={onClose} />
+
+        {!collapsed && (
+          <div className="text-[10px] font-semibold text-secondary px-4 pt-2 pb-1 uppercase tracking-[0.6px]">
+            후속 처리
+          </div>
+        )}
+        {collapsed && <div className="my-1 border-t border-border mx-2" />}
+        <NavItem to="/appeals" label="이의신청" icon={<AppealsIcon />} collapsed={collapsed} onClick={onClose} />
+        <NavItem to="/indemnity" label="구상권" icon={<IndemnityIcon />} collapsed={collapsed} onClick={onClose} />
       </div>
 
       {/* Footer / Toggle */}

@@ -17,3 +17,4 @@ export { default as RadioOption } from './RadioOption';
 export { default as CheckboxRow } from './CheckboxRow';
 export { default as Modal } from './Modal';
 export { default as Toast } from './Toast';
+export { Skeleton } from './Skeleton';
